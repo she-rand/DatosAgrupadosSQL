@@ -51,7 +51,8 @@ SELECT fuente, SUM(cantidad) AS InscritosPorFuente FROM inscritos GROUP BY fuent
 SELECT  fecha, SUM(cantidad) FROM inscritos GROUP BY fecha ORDER BY SUM(cantidad) DESC LIMIT 1;
 
 --Día en que se inscribiron más personas usando el blog
-SELECT fuente,fecha, SUM(cantidad) AS InscritosPorFuente FROM inscritos WHERE fuente='Blog' GROUP BY fuente, fecha ORDER BY SUM(cantidad)  DESC LIMIT 1 ;
+SELECT fuente,fecha, SUM(cantidad) AS InscritosPorFuente FROM inscritos 
+WHERE fuente='Blog' GROUP BY fuente, fecha ORDER BY SUM(cantidad)  DESC LIMIT 1 ;
 
 --Promedio de personas inscritas por día
 SELECT  fecha, AVG(cantidad) FROM inscritos GROUP BY fecha ORDER BY fecha;
@@ -60,7 +61,7 @@ SELECT  fecha, AVG(cantidad) FROM inscritos GROUP BY fecha ORDER BY fecha;
 SELECT fecha, SUM(cantidad) FROM inscritos GROUP BY fecha HAVING SUM(cantidad)>50;
 
 --Promedio por día desde el tercer  día
-SELECT  fecha, AVG(cantidad) FROM inscritos WHERE fecha NOT IN ((SELECT  fecha, SUM(cantidad) FROM inscritos GROUP BY fecha ORDER BY fecha LIMIT 2
+SELECT  fecha, AVG(cantidad) FROM inscritos WHERE fecha NOT IN ((SELECT  fecha FROM inscritos GROUP BY fecha ORDER BY fecha LIMIT 2
 )) GROUP BY fecha ORDER BY fecha;
 
 SELECT  fecha, SUM(cantidad) FROM inscritos GROUP BY fecha ORDER BY fecha LIMIT 2;
